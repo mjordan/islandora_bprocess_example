@@ -1,0 +1,9 @@
+name = Islandora Background Process Example 
+description = "Example of an Islandora Background Process module."
+dependencies[] = islandora_background_process
+package = Islandora Tools
+configure = admin/islandora/tools/bprocessexample
+version = 7.x-dev
+core = 7.x
+php = 5.3
+files[] = includes/IslandoraBprocessExample.inc

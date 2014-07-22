@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Example Islandora background process module. Adds a datastream comprised of a
+ * robots.txt to objects when they are first ingested into Islandora and readds the
+ * datastream when the objects are modified.
+ */
+
+// Instantiate the object that manages the background process so that
+// it can be invoked in one of the hooks in islandora_background_process.module.
+$IslandoraRobotsTxtBackgroundProcess = new IslandoraBprocessExample();
+
+/**
+ * Implements hook_menu().
+ */
+function islandora_bprocess_example_menu() {
+  $items = array();
+  $items['admin/islandora/tools/bprocessexample'] = array(
+    'title' => 'Islandora Background Process Example Module',
+    'description' => 'Adds a robots.txt from a site you choose as a datastream.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('islandora_bprocess_example_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'includes/admin.form.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
