@@ -32,6 +32,15 @@ class IslandoraBprocessExample extends IslandoraBackgroundProcess {
   // compatible with the work() method in the IslandoraBackgroundProcess abstract
   // class.
   public function work($islandora_object = NULL, $datastream = NULL) {
+
+    // Add additional execution time if configured in admin settings. We only want to add it once.
+    // See https://github.com/mjordan/islandora_bprocess_ocr for an example of an option
+    // to add a timeout option for querying remote services.
+    $additional_time_limit = variable_get('islandora_bprocess_example_additional_time_limit', '30');
+    if ($this->numAttempts == 0 && is_numeric($additional_time_limit)) {
+      drupal_set_time_limit($additional_time_limit); 
+    }
+
     $dsid = variable_get('islandora_bprocess_example_robots_txt_dsid', 'ROBOTS');
     $pid_dsid_string = $islandora_object->id . "/" . $dsid; 
     $ds_label = variable_get('islandora_bprocess_example_robots_txt_dslabel', 'Robots.txt file');
@@ -81,9 +90,6 @@ class IslandoraBprocessExample extends IslandoraBackgroundProcess {
         array('%item' => $pid_dsid_string), WATCHDOG_INFO);
 
       $time_pre = microtime(true);
-      // Pause execution to simulate a long-running processes.
-      $sleep = variable_get('islandora_bprocess_example_sleep_period', '30');
-      sleep($sleep);
 
       // In this example module, we retrieve the robots.txt file at the specified location and
       // add it to the object as a datastream.

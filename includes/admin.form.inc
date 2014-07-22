@@ -31,13 +31,14 @@ function islandora_bprocess_example_admin_settings() {
     '#default_value' => variable_get('islandora_bprocess_example_robots_txt_dslabel', 'Robots.txt file'),
     '#required' => TRUE,
   );
-  $form['islandora_bprocess_example_sleep_period'] = array(
-    '#title' => t('Sleep'),
+  $form['islandora_bprocess_example_additional_time_limit'] = array(
+    '#title' => t('Additional time limit'),
     '#type' => 'textfield',
     '#size' => 10,
-    '#default_value' => variable_get('islandora_bprocess_example_sleep_period', '30'),
-    '#description' => t('Number of seconds to pause before fetching the robots.txt file. Intended to simulate a long-running process.'),
-    '#required' => TRUE,
+    '#default_value' => variable_get('islandora_bprocess_example_additional_time_limit', '30'),
+    '#description' => t('Number of seconds to pass to <a href="@drupal_set_time_limit">drupal_set_time_limit</a>.
+      Leave blank to not add additional time.', array("@drupal_set_time_limit" =>
+      'https://api.drupal.org/api/drupal/includes%21common.inc/function/drupal_set_time_limit/7')),
   );
   $form['islandora_bprocess_example_max_attempts'] = array(
     '#title' => t('Maximum attempts'),
