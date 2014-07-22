@@ -31,6 +31,14 @@ function islandora_bprocess_example_admin_settings() {
     '#default_value' => variable_get('islandora_bprocess_example_robots_txt_dslabel', 'Robots.txt file'),
     '#required' => TRUE,
   );
+  $form['islandora_bprocess_example_sleep_period'] = array(
+    '#title' => t('Sleep'),
+    '#type' => 'textfield',
+    '#size' => 10,
+    '#default_value' => variable_get('islandora_bprocess_example_sleep_period', '30'),
+    '#description' => t('Number of seconds to pause before fetching the robots.txt file. Intended to simulate a long-running process.'),
+    '#required' => TRUE,
+  );
   $form['islandora_bprocess_example_max_attempts'] = array(
     '#title' => t('Maximum attempts'),
     '#type' => 'textfield',

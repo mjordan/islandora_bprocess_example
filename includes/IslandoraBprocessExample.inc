@@ -79,7 +79,11 @@ class IslandoraBprocessExample extends IslandoraBackgroundProcess {
 
       islandora_background_process_log("Starting remote process for datastream %item",
         array('%item' => $pid_dsid_string), WATCHDOG_INFO);
+
       $time_pre = microtime(true);
+      // Pause execution to simulate a long-running processes.
+      $sleep = variable_get('islandora_bprocess_example_sleep_period', '30');
+      sleep($sleep);
 
       // In this example module, we retrieve the robots.txt file at the specified location and
       // add it to the object as a datastream.
