@@ -16,7 +16,7 @@ Install this module as usual; see [this](https://drupal.org/documentation/instal
 
 Configure the URL of the robots.txt file you want to use as a datastream, and some additional options, at admin/islandora/tools/bprocessexample.
 
-The "sleep" configuration option lets you set how long to delay retrieval of the robots.txt file, which is intended to simulate a long running task.
+The "Additional time limit" configuration option lets you set how long to increase PHP's maximum execution time for this task.
 
 ##  Logging
 
